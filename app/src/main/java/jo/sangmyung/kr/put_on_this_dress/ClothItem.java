@@ -4,13 +4,13 @@ import android.graphics.Bitmap;
 
 public class ClothItem {
     private String name;
-    private String explanation;
+    private String description;
     private int style;
     private Bitmap[] images;
 
-    public ClothItem(String name, String explanation, int style, Bitmap[] images) {
+    public ClothItem(String name, String description, int style, Bitmap[] images) {
         this.name = name;
-        this.explanation = explanation;
+        this.description = description;
         this.style = style;
         this.images = images;
     }
@@ -23,12 +23,12 @@ public class ClothItem {
         this.name = name;
     }
 
-    public String getExplanation() {
-        return explanation;
+    public String getDescription() {
+        return description;
     }
 
-    public void setExplanation(String explanation) {
-        this.explanation = explanation;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public int getStyle() {

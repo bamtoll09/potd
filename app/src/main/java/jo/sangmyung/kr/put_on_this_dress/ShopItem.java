@@ -2,7 +2,7 @@ package jo.sangmyung.kr.put_on_this_dress;
 
 import java.util.ArrayList;
 
-public class StoreItem {
+public class ShopItem {
     private String name;
     private String explanation;
     private int likes;
@@ -10,7 +10,7 @@ public class StoreItem {
     private ArrayList<ClothItem> clothes;
     private int lat, log; // 위도, 경도
 
-    public StoreItem(String name, String explanation, int likes, int style, ArrayList<ClothItem> clothes, int lat, int log) {
+    public ShopItem(String name, String explanation, int likes, int style, ArrayList<ClothItem> clothes, int lat, int log) {
         this.name = name;
         this.explanation = explanation;
         this.likes = likes;
@@ -20,7 +20,7 @@ public class StoreItem {
         this.log = log;
     }
 
-    public StoreItem(String name, String explanation, int style, ArrayList<ClothItem> clothes, int lat, int log) {
+    public ShopItem(String name, String explanation, int style, ArrayList<ClothItem> clothes, int lat, int log) {
         this.name = name;
         this.explanation = explanation;
         this.style = style;

@@ -9,12 +9,14 @@
         android:orientation="vertical">
 
         <ImageView
+            android:id="@+id/img_today_style"
             android:layout_width="match_parent"
             android:layout_height="180dp"
             android:layout_margin="@dimen/activity_margin"
             android:elevation="4dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/model" />
+            android:src="@drawable/model"
+            />
 
         <RelativeLayout
             android:layout_width="match_parent"
