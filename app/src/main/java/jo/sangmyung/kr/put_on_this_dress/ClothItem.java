@@ -1,18 +1,28 @@
 package jo.sangmyung.kr.put_on_this_dress;
 
-import android.graphics.Bitmap;
+import java.util.Date;
 
 public class ClothItem {
+    private final String ID;
+    private int category;
     private String name;
     private String description;
+    private String[] images;
+    private int cost;
     private int style;
-    private Bitmap[] images;
+    private int size;
+    private Date date;
 
-    public ClothItem(String name, String description, int style, Bitmap[] images) {
+    public ClothItem(String ID, int category, String name, String description, String[] images, int cost, int style, int size, Date date) {
+        this.ID = ID;
+        this.category = category;
         this.name = name;
         this.description = description;
-        this.style = style;
         this.images = images;
+        this.cost = cost;
+        this.style = style;
+        this.size = size;
+        this.date = date;
     }
 
     public String getName() {
@@ -39,11 +49,11 @@ public class ClothItem {
         this.style = style;
     }
 
-    public Bitmap[] getImages() {
+    public String[] getImages() {
         return images;
     }
 
-    public void setImages(Bitmap[] images) {
+    public void setImages(String[] images) {
         this.images = images;
     }
 }

@@ -70,35 +70,35 @@
             <ImageView
                 android:layout_width="200dp"
                 android:layout_height="200dp"
-                android:src="@drawable/iu1"
+                android:src="@drawable/iu"
                 android:layout_marginRight="@dimen/activity_margin"
                 />
 
             <ImageView
                 android:layout_width="200dp"
                 android:layout_height="200dp"
-                android:src="@drawable/iu2"
+                android:src="@drawable/iu"
                 android:layout_marginRight="@dimen/activity_margin"
                 />
 
             <ImageView
                 android:layout_width="200dp"
                 android:layout_height="200dp"
-                android:src="@drawable/iu3"
+                android:src="@drawable/iu"
                 android:layout_marginRight="@dimen/activity_margin"
                 />
 
             <ImageView
                 android:layout_width="200dp"
                 android:layout_height="200dp"
-                android:src="@drawable/iu4"
+                android:src="@drawable/iu"
                 android:layout_marginRight="@dimen/activity_margin"
                 />
 
             <ImageView
                 android:layout_width="200dp"
                 android:layout_height="200dp"
-                android:src="@drawable/iu5"
+                android:src="@drawable/iu"
                 />
 
 

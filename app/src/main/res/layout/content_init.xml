@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".InitActivity"
+    tools:layout_editor_absoluteY="137dp"
+    tools:showIn="@layout/activity_init"
+    android:orientation="vertical"
+    android:weightSum="2"
+    >
+
+    <Button
+        android:id="@+id/btn_start_consumer"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="소비자로 시작"
+        android:textSize="48sp"
+        />
+
+    <Button
+        android:id="@+id/btn_start_ceo"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="사장으로 시작"
+        android:textSize="48sp"
+        />
+
+</LinearLayout>

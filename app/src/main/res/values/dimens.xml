@@ -6,4 +6,6 @@
     <dimen name="nav_header_height">176dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="activity_margin">8dp</dimen>
+    <dimen name="cloth_image_size_in_shop_item">81dp</dimen>
+    <dimen name="cloth_image_right_margin_in_shop_item">8dp</dimen>
 </resources>

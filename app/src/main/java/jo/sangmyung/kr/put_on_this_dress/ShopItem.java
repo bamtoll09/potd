@@ -1,49 +1,39 @@
 package jo.sangmyung.kr.put_on_this_dress;
 
-import java.util.ArrayList;
+import java.util.Date;
 
 public class ShopItem {
+    private final String ID;
     private String name;
     private String explanation;
+    private String[] images;
     private int likes;
     private int style;
-    private ArrayList<ClothItem> clothes;
     private int lat, log; // 위도, 경도
+    private Date date;
 
-    public ShopItem(String name, String explanation, int likes, int style, ArrayList<ClothItem> clothes, int lat, int log) {
+    public ShopItem(String ID, String name, String explanation, String[] images, int likes, int style, int lat, int log, Date date) {
+        this.ID = ID;
         this.name = name;
         this.explanation = explanation;
+        this.images = images;
         this.likes = likes;
         this.style = style;
-        this.clothes = clothes;
         this.lat = lat;
         this.log = log;
+        this.date = date;
     }
 
-    public ShopItem(String name, String explanation, int style, ArrayList<ClothItem> clothes, int lat, int log) {
-        this.name = name;
-        this.explanation = explanation;
-        this.style = style;
-        this.clothes = clothes;
-        this.lat = lat;
-        this.log = log;
-        this.likes = 0;
+    public String getID() {
+        return ID;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getExplanation() {
         return explanation;
-    }
-
-    public void setExplanation(String explanation) {
-        this.explanation = explanation;
     }
 
     public int getLikes() {
@@ -62,12 +52,8 @@ public class ShopItem {
         this.style = style;
     }
 
-    public ArrayList<ClothItem> getClothes() {
-        return clothes;
-    }
-
-    public void setClothes(ArrayList<ClothItem> clothes) {
-        this.clothes = clothes;
+    public String[] getImages() {
+        return images;
     }
 
     public int getLat() {
@@ -84,5 +70,13 @@ public class ShopItem {
 
     public void setLog(int log) {
         this.log = log;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 }

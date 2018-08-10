@@ -18,19 +18,84 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ListView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     ImageView imageTodayStyle;
+    ListView shopListView;
+    ShopItemAdapter shopItemAdapter;
+
+    APIInterface service;
+
+    List<ShopItem> ResourceToItem(List<ShopResource> shopResources) {
+        List<ShopItem> shopItems = new ArrayList<>();
+
+        for (int i=0; i<shopResources.size(); ++i) {
+            String[] images = new String[shopResources.get(i).getImages().size()];
+            shopResources.get(i).getImages().toArray(images);
+
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+
+            try {
+                shopItems.add(new ShopItem(
+                        shopResources.get(i).getId(),
+                        shopResources.get(i).getName(),
+                        shopResources.get(i).getExplanation(),
+                        images,
+                        shopResources.get(i).getLikes(),
+                        shopResources.get(i).getStyle(),
+                        shopResources.get(i).getLat(),
+                        shopResources.get(i).getLog(),
+                        dateFormat.parse(shopResources.get(i).getDate())
+                ));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+        return shopItems;
+    }
+
+    void LoadShops() {
+        service.getShops().enqueue(new Callback<List<ShopResource>> () {
+            @Override
+            public void onResponse(Call<List<ShopResource>> call, Response<List<ShopResource>> response) {
+                if (response.isSuccessful()) {
+                    List<ShopItem> shopItems = ResourceToItem(response.body());
+                    shopItemAdapter = new ShopItemAdapter(getApplicationContext(), R.layout.item_store, shopItems);
+                    shopListView.setAdapter(shopItemAdapter);
+                    Log.d("TAG", shopItemAdapter.getCount() + "");
+
+                    Log.d("MainActivity", "posts loaded from API");
+                } else {
+                    int statusCode = response.code();
+                    Log.d("MainActivity", statusCode + ": occured error");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<ShopResource>> call, Throwable t) {
+                Log.d("MainActivity", "error loading from API");
+            }
+        });
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        service = APIUtils.getAPIService();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -45,11 +110,9 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         imageTodayStyle = (ImageView) findViewById(R.id.img_today_style);
+        shopListView = (ListView) findViewById(R.id.list_shop);
 
-        Glide.with(this)
-                .load(R.drawable.model)
-                .apply(RequestOptions.circleCropTransform())
-                .into(imageTodayStyle);
+        LoadShops();
 
         Intent intent = getIntent();
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
