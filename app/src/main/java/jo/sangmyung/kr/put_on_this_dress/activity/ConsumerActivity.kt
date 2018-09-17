@@ -33,7 +33,7 @@ import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class ConsumerActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var imageTodayStyle: ImageView
     private lateinit var shopListView: ListView
@@ -78,15 +78,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     shopListView.adapter = shopItemAdapter
                     Log.d("TAG", shopItemAdapter.count.toString() + "")
 
-                    Log.d("MainActivity", "posts loaded from API")
+                    Log.d("ConsumerActivity", "posts loaded from API")
                 } else {
                     val statusCode = response.code()
-                    Log.d("MainActivity", statusCode.toString() + ": occured error")
+                    Log.d("ConsumerActivity", statusCode.toString() + ": occured error")
                 }
             }
 
             override fun onFailure(call: Call<List<ShopResource>>, t: Throwable) {
-                Log.d("MainActivity", "error loading from API")
+                Log.d("ConsumerActivity", "error loading from API")
             }
         })
     }
@@ -107,6 +107,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         val navigationView = findViewById<View>(R.id.nav_view) as NavigationView
         navigationView.setNavigationItemSelectedListener(this)
+
+        View.inflate(applicationContext, R.layout.layout_consumer, findViewById(R.id.layout_main))
 
         imageTodayStyle = findViewById<View>(R.id.img_today_style) as ImageView
         shopListView = findViewById<View>(R.id.list_shop) as ListView

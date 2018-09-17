@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
@@ -20,13 +21,10 @@ import jo.sangmyung.kr.put_on_this_dress.item.ShopItem;
 
 public class ShopItemAdapter extends ArrayAdapter<ShopItem> {
 
-    private List<ShopItem> mObjects;
     private int mResource;
 
     public ShopItemAdapter(@NonNull Context context, int resource, @NonNull List<ShopItem> objects) {
         super(context, resource, objects);
-
-        mObjects = objects;
         mResource = resource;
     }
 
@@ -41,7 +39,10 @@ public class ShopItemAdapter extends ArrayAdapter<ShopItem> {
             v = inflater.inflate(mResource, parent, false);
 
             ImageView storeImageView = (ImageView) v.findViewById(R.id.img_store);
-            Picasso.get().load(StaticValue.WEBSERVER_URI + mObjects.get(position).getImages()[0]).placeholder(R.drawable.iu).into(storeImageView);
+            TextView nameText = (TextView) v.findViewById(R.id.text_store_name);
+            TextView likeText = (TextView) v.findViewById(R.id.text_like_count);
+
+            Picasso.get().load(StaticValue.WEBSERVER_URI + getItem(position).getImages()[0]).placeholder(R.drawable.iu).into(storeImageView);
 
             LinearLayout layout = (LinearLayout) v.findViewById(R.id.layout_store_clothes);
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
@@ -50,14 +51,17 @@ public class ShopItemAdapter extends ArrayAdapter<ShopItem> {
             );
             params.rightMargin = (int) parent.getResources().getDimension(R.dimen.cloth_image_right_margin_in_shop_item);
 
-            for (int i = 1; i < mObjects.get(position).getImages().length; ++i) {
+            for (int i = 1; i < getItem(position).getImages().length; ++i) {
                 ImageView imageView = new ImageView(parent.getContext());
 
-                Picasso.get().load(StaticValue.WEBSERVER_URI + mObjects.get(position).getImages()[i]).placeholder(R.drawable.iu).into(imageView);
+                Picasso.get().load(StaticValue.WEBSERVER_URI + getItem(position).getImages()[i]).placeholder(R.drawable.iu).into(imageView);
 
-                if (i == mObjects.size() - 1) params.rightMargin = 0;
+                if (i == getCount() - 1) params.rightMargin = 0;
                 layout.addView(imageView, params);
             }
+
+            nameText.setText(getItem(position).getName());
+            likeText.setText(String.valueOf(getItem(position).getLikes()));
 
             /*if (position < getCount()) {
                 v.layout

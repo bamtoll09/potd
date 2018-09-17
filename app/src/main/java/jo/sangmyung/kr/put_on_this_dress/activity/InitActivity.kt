@@ -10,8 +10,15 @@ import kotlinx.android.synthetic.main.content_init.*
 class InitActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(p0: View?) {
-        val intent: Intent = Intent(applicationContext, MainActivity::class.java)
+        val intent: Intent = Intent()
+
+        when (p0?.id) {
+            R.id.btn_start_consumer -> intent.setClass(applicationContext, ConsumerActivity::class.java)
+            R.id.btn_start_ceo -> intent.setClass(applicationContext, CEOActivity::class.java)
+        }
+
         startActivity(intent)
+        finish()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
