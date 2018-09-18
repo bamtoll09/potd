@@ -139,7 +139,20 @@ class ConsumerActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
         val searchView = menu.findItem(R.id.action_search).actionView as SearchView
 
         searchView.setSearchableInfo(searchManager.getSearchableInfo(componentName))
-        searchView.setIconifiedByDefault(false)
+        searchView.setIconifiedByDefault(true)
+
+        searchView.queryHint ="Search"
+        searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query:String):Boolean {
+                Log.d("searching", "submit: " + query)
+                return true
+            }
+
+            override fun onQueryTextChange(newText:String):Boolean {
+                Log.d("searching", newText)
+                return true
+            }
+        })
 
         return true
     }
